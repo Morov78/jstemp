@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doc</title>
+    <!-- підключення файлу стилів -->
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Водний баланс</h1>
+        <ul class="wrap">
+          <li class="wrap__item">
+            <img class="img" src="./images/glass.png" alt="" />
+          </li>
+
+          <li class="wrap__item">
+            <input
+              id="name-radio1"
+              class="radio-button radio-button--week visually-hidden"
+              type="radio"
+              name="time"
+              value="week"
+              checked
+            />
+            <label class="label-radio label-week--margin" for="name-radio1">
+              Тиждень
+            </label>
+            <input
+              id="name-radio2"
+              class="radio-button radio-button--month visually-hidden"
+              type="radio"
+              name="time"
+              value="month"
+            />
+            <label class="label-radio label-month--margin" for="name-radio2">
+              Місяць
+            </label>
+
+            <img
+              class="image image__month"
+              src="/images/graph-month.png"
+              alt=""
+            />
+            <img
+              class="image image__week"
+              src="/images/graph-week.png"
+              alt=""
+            />
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- <script src="js/content.js"></script> -->
+    <!-- <script src="js/script.js"></script> -->
+  </body>
+</html>
