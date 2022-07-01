@@ -1,118 +1,99 @@
 /* прибирання маркерів в списках */
-body {
-  background-color: rgb(184, 146, 107);
-  color: rgb(221, 202, 185);
-  font-size: 25px;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+.link {
+  font-size: 10px;
   margin: 0;
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-/* робить елемент невидимим */
-.visually-hidden {
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
   padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px;
+  text-decoration: none;
+  color: inherit;
 }
-
-.section {
-  padding-left: 20px;
-  padding-right: 20px;
-  background-repeat: no-repeat;
-  background-position-y: bottom;
-  background-size: 100%;
-  background-image: url(../images/animw.png);
-}
-.container {
-  width: 100%;
-  height: 98vh;
-}
-/* Описування класу заголовка */
-.title {
-  font-size: 50px;
-  text-align: center;
-  margin-bottom: 30px;
+.list {
+  font-size: 14px;
+  list-style: none;
+  margin: 10px 0 0 10px;
+  padding: 0;
+  color: red;
 }
 .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  outline: 1px solid red;
+  border: 3px solid red;
+  margin: 15px 15px auto 15px;
+  height: calc(100vh - 40px);
+  position: relative;
 }
-.wrap__item {
-  outline: 1px dotted blue;
-  max-width: calc((100% / 2) - 70px);
-  width: 100%;
-  max-height: 350px;
-  height: 100%;
-  text-align: center;
-}
-
-.diagram__list {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 20px;
-}
-.label-radio {
-  cursor: pointer;
-  display: inline-flex;
-  padding: 10px 50px;
-  margin-bottom: 20px;
-  font-size: 25px;
-  /* border: 1px solid blue; */
-  box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.5);
-  border: 0px;
-  border-radius: 10px;
-}
-
-.label-week--margin {
-  margin-right: 30px;
-}
-
-.radio-button:checked + label {
+.button {
   background-color: blue;
+  border-width: 0px;
+  width: 20px;
+  height: 10px;
+  position: absolute;
 }
 
-.radio-button--month:checked ~ .image__week {
-  display: none;
+.carusel {
+  display: flex;
+  border-radius: 20px;
+  border-color: azure;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
-.radio-button--week:checked ~ .image__month {
-  display: none;
+.carusel__container {
+  overflow: hidden;
+  width: 420px;
+  margin: 0;
+}
+.carusel__arrow {
+  border-color: transparent;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.carusel__list {
+  width: 3000px;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  /* margin-left: -140px; */
+  transition: transform 250ms;
+}
+.notransition {
+  transition: transform 0ms;
+}
+.carusel__item {
+  display: inline-block;
+  width: 130px;
+  height: 130px;
+  border-radius: 15px;
+  border-width: 0px;
+  background-color: blueviolet;
+}
+.carusel__image {
+  display: block;
+  /* transform: translate(); */
 }
 
-.img {
-  display: block;
-  width: 100%;
-  max-height: 350px;
-  height: 100%;
-  object-fit: contain;
+.dom-list {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: grey;
+  width: 80vw;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  list-style: none;
 }
-.image {
-  display: block;
-  width: 100%;
-  max-height: 280px;
-  object-fit: scale-down;
+
+.dom-item {
+  width: 15px;
+  height: 15px;
+  border-width: 0;
+  background-color: black;
+  transition: background-color 1500ms;
+}
+.dom-item:hover {
+  transition-duration: 0s;
 }

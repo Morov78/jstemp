@@ -1,0 +1,44 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  margin: 20px auto auto auto;
+  /* margin-left: 20px;
+  margin-top: 20px; */
+  width: 360px;
+  height: 360px;
+  padding: 15px;
+  background-color: lightgrey;
+  border: 1px solid black;
+}
+
+.grid__row,
+.grid__row-title {
+  display: flex;
+}
+.grid__item,
+.grid__title {
+  width: 30px;
+  height: 30px;
+  border-width: 0px;
+  outline: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+}
+.grid__item {
+  cursor: pointer;
+}
+
+.grid__item.cell-black {
+  background-color: blue;
+}
+.grid__item.onOver {
+  background-color: lightblue;
+}
+.output {
+  text-align: center;
+}
