@@ -52,7 +52,9 @@
   display: flex;
   gap: 10px;
   margin: 0;
+  margin-bottom: 20px;
   padding: 0;
+
   /* margin-left: -140px; */
   transition: transform 250ms;
 }
@@ -66,10 +68,32 @@
   border-radius: 15px;
   border-width: 0px;
   background-color: blueviolet;
+  position: relative;
+}
+.carusel__title {
+  position: absolute;
+  left: 5px;
+  top: 5px;
 }
 .carusel__image {
   display: block;
   /* transform: translate(); */
+}
+.carusel__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+.carusel__button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+.carusel__button-active {
+  border-radius: 25% 25%;
 }
 
 .dom-list {

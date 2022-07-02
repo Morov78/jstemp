@@ -9,6 +9,11 @@ const listEl = document.querySelector(".carusel__list");
 const arrowPrevEl = document.querySelector(".prev");
 const arrowNextEl = document.querySelector(".next");
 makeListMarkupEl();
+// добавлення кнопок знизу слайдера
+// makeButtonsEl();
+const caruselButtonsEl = document.querySelector(".carusel__buttons");
+caruselButtonsEl.addEventListener("click", onButtonClick);
+
 addNewElemOnListEl();
 const itemsListEl = document.querySelectorAll(".carusel__item");
 arrowPrevEl.addEventListener("click", _.throttle(arrowPrevHandle, 300));
@@ -31,6 +36,7 @@ function arrowPrevHandle() {
   }
   // console.log(position);
   transformListEl();
+  changeButtonPosition();
   //   listEl.style.transform = `translate(${position}px)`;
 }
 function arrowNextHandle() {
@@ -42,6 +48,14 @@ function arrowNextHandle() {
   }
   // console.log(position);
   transformListEl();
+  changeButtonPosition();
+}
+function onButtonClick(event) {
+  // console.log(event.target.dataset.button);
+  // console.log(event.target.textContent);
+  position = -(event.target.textContent - 2) * (width + gap);
+  transformListEl();
+  changeButtonPosition();
 }
 
 function transformWithoutTransition() {
@@ -64,19 +78,41 @@ function transformListEl() {
     setTimeout(transformWithoutTransition, 250);
   }
 }
-
+function changeButtonPosition() {
+  let set = -position / (width + gap) + 2;
+  if (set === 11) {
+    // console.log(set, "set");
+    set = 1;
+  }
+  if (set === 0) {
+    set = 10;
+  }
+  addClassToActivePosition(set);
+}
+function addClassToActivePosition(index) {
+  const activeClassButton = caruselButtonsEl.querySelector(
+    ".carusel__button-active"
+  );
+  if (activeClassButton) {
+    activeClassButton.classList.remove("carusel__button-active");
+  }
+  caruselButtonsEl.children[index - 1].classList.add("carusel__button-active");
+}
 // створюю розмітку слайдера і добавляє номер на елемент. 10 елементів
 function makeListMarkupEl() {
   let i = 1;
   for (let li of document.querySelectorAll(".carusel__item")) {
-    li.style.position = "relative";
     li.insertAdjacentHTML(
       "beforeend",
-      `<span style="position:absolute;left:5px;top:5px">${i}</span>`
+      `<span class="carusel__title">${i}</span>`
     );
     i++;
   }
 }
+// makeButtonsEl (){
+
+// }
+
 // дублюю по 2 останніх елементи списку перед першим і два перших після останнього
 function addNewElemOnListEl() {
   const lastElem = listEl.lastElementChild;

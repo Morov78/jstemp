@@ -4,7 +4,11 @@ const newItemsEl = [];
 const domListEl = document.querySelector(".dom-list");
 domListEl.addEventListener("mouseover", onSetColor);
 domListEl.addEventListener("mouseout", onRemoveColor);
+for (let i = 0; i < numberElements; i += 1) {
+  newItemsEl.push(makeElement());
+}
 
+domListEl.append(...newItemsEl);
 function makeElement() {
   const newItemEl = document.createElement("li");
   newItemEl.classList.add("dom-item");
@@ -29,9 +33,3 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
-
-for (let i = 0; i < numberElements; i += 1) {
-  newItemsEl.push(makeElement());
-}
-
-domListEl.append(...newItemsEl);
