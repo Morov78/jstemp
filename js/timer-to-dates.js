@@ -1,12 +1,12 @@
 class User {
-  constructor(name, title, dateborn) {
+  constructor(name, titleUp, titleLow, dateborn) {
     this.name = name;
-    this.title = title;
+    this.titleUp = titleUp;
+    this.titleLow = titleLow;
     this.dateborn = dateborn;
   }
   start() {
     const timeId = setInterval(() => {
-      //   console.log(`${this.name}`);
       timeToBorn(this.name, this.dateborn);
     }, 1000);
     this.timeId = timeId;
@@ -17,15 +17,14 @@ class User {
 }
 
 const dataUsers = [
-  ["Аріна", "Аріни", "October 8, 2012"],
-  ["Роман", "Романа", "June 1, 1978"],
-  ["Ніка", "Ніки", "March 17, 2016"],
-  ["Аня", "Ані", "November 27, 2017"],
-  ["осінь", "осені", "September 1,2022"],
+  ["Аріна", "День народження Аріни", "До дня народження", "October 8, 2012"],
+  ["Роман", "День народження Романа", "До дня народження", "June 1, 1978"],
+  ["Ніка", "День народження Ніки", "До дня народження", "March 17, 2016"],
+  ["Аня", "День народження Ані", "До дня народження", "November 27, 2017"],
+  ["осінь", "Початок осені", "До початку осені", "September 1,2022"],
 ];
 
-const users = dataUsers.map((user) => new User(...user));
-// console.log(users);
+const users = dataUsers.map((user) => new User(...user)); // console.log(users);
 
 // users.map((user) => console.log(user.title, user.dateborn));
 const outputUsersEl = document.querySelector(".list-users");
@@ -34,11 +33,11 @@ renderUsers(users);
 function renderUsers(users) {
   const markupUsers = users.reduce((markup, user) => {
     markup += `<li>
-        <p><b>${user.name}</b>  
-        день народження ${user.title}: ${user.dateborn}</p>
-        <p>До дня народження лишилося:
-        <span class="output-timer" data-name="${user.name}"></span></p>
+        <p>${user.titleUp}:  <b>${user.dateborn}</b></p>
+        <p>${user.titleLow} лишилося:
+        <b><span class="output-timer" data-name="${user.name}"></span></b></p>
         </li>`;
+    user.start();
     return markup;
   }, "");
   outputUsersEl.innerHTML = markupUsers;
@@ -46,14 +45,12 @@ function renderUsers(users) {
 function timeToBorn(name, dateborn) {
   const currentDate = new Date();
   const born = new Date(dateborn);
-  //   console.log(currentDate.getFullYear());
   born.setFullYear(currentDate.getFullYear());
-  let bornMinusCurrent = born.getTime() - Date.now();
+  let bornMinusCurrent = born.getTime() - currentDate.getTime();
   if (bornMinusCurrent < 0) {
     born.setFullYear(currentDate.getFullYear() + 1);
-    bornMinusCurrent = born.getTime() - Date.now();
+    bornMinusCurrent = born.getTime() - currentDate.getTime();
   }
-  //   console.log(bornMinusCurrent);
   outputDate(name, convertMs(bornMinusCurrent));
 }
 
@@ -65,14 +62,6 @@ function outputDate(name, dateObj) {
   sel.textContent = `${dateObj.days} дні ${addLeadingZero(
     dateObj.hours
   )}:${addLeadingZero(dateObj.minutes)}:${addLeadingZero(dateObj.seconds)}`;
-  //   dateArray.forEach(([dataSelector, value], index) => {
-  //     outputDateEl.querySelector(`[data-${dataSelector}]`).textContent =
-  //       addLeadingZero(value);
-  //     if (dataSelector === "days") {
-  //       return;
-  //     }
-
-  //   });
 }
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -96,6 +85,4 @@ function addLeadingZero(value) {
   return value.toString().padStart(2, "0");
 }
 
-users.forEach((user) => user.start());
-// users[1].start();
-// users[2].start();
+// users.forEach((user) => user.start());
